@@ -1,0 +1,25 @@
+[project]
+name = "olist"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "arfs>=2.3.3",
+    "catboost>=1.2.7",
+    "fastparquet>=2024.11.0",
+    "ipykernel>=6.29.5",
+    "joblib>=1.4.2",
+    "matplotlib>=3.10.0",
+    "matplotlib-inline>=0.1.7",
+    "optuna>=4.2.0",
+    "pandas>=2.2.3",
+    "pyarrow>=19.0.0",
+    "pyspark>=3.5.4",
+    "scikit-learn>=1.6.1",
+    "seaborn>=0.13.2",
+    "setuptools>=75.8.0",
+    "shap>=0.46.0",
+    "venn-abers>=1.4.6",
+]
+
