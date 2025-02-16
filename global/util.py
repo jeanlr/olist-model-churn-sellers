@@ -727,7 +727,7 @@ def plot_by_safra(dataframe, target, explicativa, safra):
   result = df_copy.groupby([safra, explicativa]).agg({target: 'mean', explicativa: 'count'}).rename(columns={explicativa: 'Volume'}).reset_index()
 
   # Plota o gráfico
-  fig, ax1 = plt.subplots(figsize=(40, 40))
+  fig, ax1 = plt.subplots(figsize=(15, 10))
 
   # Eixo Y esquerdo: Volume total por safra
   volume_by_safra = result.groupby(safra).agg({'Volume': 'sum'}).reset_index()
@@ -987,13 +987,14 @@ def plot_ks_gini_by_datref(df, target_col, score_col, datref_col,titulo='KS e GI
   plt.plot(unique_dates, gini_values, label='Gini', marker='o')
   plt.xlabel(datref_col)
   plt.ylabel('Value')
+  plt.ylim(0, 100)
   plt.title(titulo)
   plt.legend()
   plt.grid(True)
   plt.tight_layout()
   plt.show()
 
-  def apply_fillna(df):
+def apply_fillna(df):
     '''
     Esta função preenche os valores nulos do DataFrame com a média das colunas numéricas 
     e com a moda para as colunas categóricas.
@@ -1012,14 +1013,14 @@ def plot_ks_gini_by_datref(df, target_col, score_col, datref_col,titulo='KS e GI
     means = {}
     for col in numerical_cols:
         means[col] = df[col].mean()
-        df[col].fillna(means[col], inplace=True)
+        df[col].fillna(means[col])
 
     # Preenchimento para colunas categóricas
     categorical_cols = df.select_dtypes(include=['object']).columns
     modes = {}
     for col in categorical_cols:
         modes[col] = df[col].mode()[0] if not df[col].mode().empty else 'VERIFICAR'
-        df[col].fillna(modes[col], inplace=True)
+        df[col].fillna(modes[col])
 
     return df, means, modes
 
